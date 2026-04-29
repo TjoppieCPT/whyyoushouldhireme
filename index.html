@@ -20,6 +20,7 @@
       padding: 60px 20px; 
       text-align: center; 
       box-sizing: border-box;
+      overflow-x: hidden; /* Prevents scrollbars when the badge jumps to the edge */
     }
     
     h1 { 
@@ -116,7 +117,7 @@
     }
     
     .card-back { 
-      background: #000; /* Pure black background now */
+      background: #000; 
       color: #fff; 
       transform: rotateY(180deg); 
       border: 3px solid #000;
@@ -129,7 +130,7 @@
     }
     
     .card-back span { 
-      color: #ef4444; /* Changed the weird blue to the danger red */
+      color: #ef4444; 
       font-weight: 800; 
       font-size: 1.3rem; 
     }
@@ -166,6 +167,8 @@
       border: 2px solid #000;
       transition: all 0.3s ease; 
       cursor: pointer;
+      position: relative;
+      z-index: 10;
     }
     
     .btn:hover { 
@@ -175,10 +178,30 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
 
+    /* The Runaway Badge Styling */
+    #runaway-badge {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #ef4444;
+      color: #fff;
+      padding: 10px 20px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4);
+      transition: top 0.2s ease, left 0.2s ease;
+      z-index: 1000;
+      user-select: none;
+    }
+
     @media (max-width: 768px) {
       .card { height: 240px; }
       .card-front h2 { font-size: 1.5rem; }
       .plot-twist { padding: 20px; }
+      /* Hides the runaway badge on mobile */
+      #runaway-badge { display: none; } 
     }
   </style>
 </head>
@@ -228,6 +251,32 @@
   </div>
 
   <a href="CV_Anonymous.pdf" target="_blank" class="btn">I think we can handle that. View CV.</a>
+
+  <div id="runaway-badge">Catch me before I'm gone ⏳</div>
+
+  <script>
+    const badge = document.getElementById('runaway-badge');
+    
+    badge.addEventListener('mouseover', function() {
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      const badgeWidth = badge.offsetWidth;
+      const badgeHeight = badge.offsetHeight;
+      
+      const randomX = Math.floor(Math.random() * (windowWidth - badgeWidth - 20));
+      const randomY = Math.floor(Math.random() * (windowHeight - badgeHeight - 20));
+      
+      badge.style.left = randomX + 'px';
+      badge.style.top = randomY + 'px';
+      badge.style.bottom = 'auto'; 
+      badge.style.right = 'auto'; 
+    });
+
+    badge.addEventListener('click', function() {
+      alert("Okay, you caught me. Clearly you don't give up easily. You should probably just click 'View CV' now.");
+      badge.style.display = 'none'; 
+    });
+  </script>
 
 </body>
 </html>
