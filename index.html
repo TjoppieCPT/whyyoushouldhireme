@@ -27,23 +27,21 @@ h1 {
   margin-bottom: 10px;
 }
 
-/* Updated Subtitle container */
 .subtitle {
   font-size: 1.25rem;
   font-weight: 800;
-  color: #ef4444; /* Bold Danger Red */
+  color: #ef4444; 
   max-width: 650px;
   margin: 0 auto 60px auto;
   line-height: 1.6;
 }
 
-/* The fly-in animation classes for the subtitle */
 .fly-in {
   display: inline-block;
   opacity: 0;
   transform: translateY(10px);
   animation: fadeIn 0.8s ease forwards;
-  margin-right: 4px; /* Adds a tiny space between the sentences */
+  margin-right: 4px; 
 }
 
 .delay-1 { animation-delay: 0.2s; }
@@ -106,10 +104,19 @@ h1 {
   box-shadow: 12px 12px 0px #000;
 }
 
-.card-front h2 {
-  font-size: 1.5rem;
+/* The new centered number styling */
+.card-num {
+  font-size: 3.5rem;
   font-weight: 900;
-  line-height: 1.2;
+  color: #ef4444;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+
+.card-front h2 {
+  font-size: 1.4rem;
+  font-weight: 900;
+  line-height: 1.3;
   margin: 0;
 }
 
@@ -135,7 +142,6 @@ h1 {
   margin-top: 80px;
 }
 
-/* Updated Button without the shadow */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -157,7 +163,7 @@ h1 {
 }
 
 .btn:hover {
-  transform: translateY(-4px); /* Simple lift instead of offset shadow */
+  transform: translateY(-4px); 
   background: #fff;
   color: #000;
 }
@@ -175,7 +181,7 @@ h1 {
   opacity: 0;
   transform: translateY(10px);
   animation: fadeIn 1s ease forwards;
-  animation-delay: 1.5s; /* Slightly delayed to happen after the red subtitle finishes */
+  animation-delay: 1.5s; 
 }
 
 @keyframes fadeIn {
@@ -185,6 +191,7 @@ h1 {
 @media (max-width: 900px) {
   .card { height: 280px; }
   .card-front h2 { font-size: 1.3rem; }
+  .card-num { font-size: 3rem; }
 }
 </style>
 </head>
@@ -202,7 +209,8 @@ h1 {
   <div class="card" onclick="flipCard(this)">
     <div class="card-inner">
       <div class="card-front">
-        <h2>1. I will destroy your current workflows.</h2>
+        <div class="card-num">1</div>
+        <h2>I will destroy your current workflows.</h2>
       </div>
       <div class="card-back">
         <p>Because I use Lean/Kaizen and AnyLogic simulation to <span>reduce process flow time by 67%</span>. I optimize until it's perfect.</p>
@@ -213,7 +221,8 @@ h1 {
   <div class="card" onclick="flipCard(this)">
     <div class="card-inner">
       <div class="card-front">
-        <h2>2. I am obsessed with the numbers.</h2>
+        <div class="card-num">2</div>
+        <h2>I am obsessed with the numbers.</h2>
       </div>
       <div class="card-back">
         <p>I automate disruption analysis using Python & R, successfully safeguarding <span>€10M+ in digital inventory</span> across 30,000+ touchpoints.</p>
@@ -224,7 +233,8 @@ h1 {
   <div class="card" onclick="flipCard(this)">
     <div class="card-inner">
       <div class="card-front">
-        <h2>3. I refuse to just "do what I am told."</h2>
+        <div class="card-num">3</div>
+        <h2>I refuse to just "do what I am told."</h2>
       </div>
       <div class="card-back">
         <p>I proactively engineer solutions. It's why I ranked <span>#1 out of 63</span> in my M.Sc. Supply Chain class and hold a Certified AGILean Master.</p>
@@ -235,7 +245,8 @@ h1 {
   <div class="card" onclick="flipCard(this)">
     <div class="card-inner">
       <div class="card-front">
-        <h2>4. I don't think like an employee.</h2>
+        <div class="card-num">4</div>
+        <h2>I don't think like an employee.</h2>
       </div>
       <div class="card-back">
         <p>As Co-Founder & Head of Ops of an Odoo agency I built with my brother, plus <span>12 years in Cape Town</span>, I bring a global, founder-level mindset.</p>
