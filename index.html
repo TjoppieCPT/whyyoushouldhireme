@@ -18,10 +18,9 @@ body {
   align-items: center;
   padding: 10vh 20px 80px;
   text-align: center;
-  overflow-x: hidden; /* Prevents any horizontal scrolling */
+  overflow-x: hidden; 
 }
 
-/* The Apple-style Brutalist Segmented Control */
 .lang-switch {
   position: fixed;
   top: 25px;
@@ -74,14 +73,13 @@ body {
   color: #fff;
 }
 
-/* Updated H1 to perfectly scale and stay on ONE line */
 h1 {
-  font-size: clamp(0.9rem, 3.5vw, 4rem); 
+  font-size: clamp(2rem, 4vw, 4rem); 
   font-weight: 900;
-  letter-spacing: -1px;
+  letter-spacing: -1.5px;
   margin-bottom: 10px;
-  max-width: 100%;
-  white-space: nowrap; /* Strictly enforces single line */
+  max-width: 1000px;
+  white-space: nowrap; /* Stays on one line for desktop */
 }
 
 .subtitle {
@@ -93,7 +91,6 @@ h1 {
   line-height: 1.6;
 }
 
-/* The subtly pulsing instruction */
 .instruction {
   font-size: 0.85rem;
   font-weight: 700;
@@ -122,7 +119,6 @@ h1 {
 .delay-2 { animation-delay: 0.6s; }
 .delay-3 { animation-delay: 1.0s; }
 
-/* Desktop Flexbox Grid */
 .grid {
   display: flex;
   justify-content: center;
@@ -262,7 +258,6 @@ h1 {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Tablet adjustments */
 @media (max-width: 900px) {
   .card { height: 280px; max-width: 300px;}
   .card-front h2 { font-size: 1.4rem; }
@@ -270,17 +265,23 @@ h1 {
   .lang-switch { top: 15px; right: 15px; } 
 }
 
-/* Strict Mobile 2x2 Grid Fix */
 @media (max-width: 600px) {
   body {
     padding: 12vh 15px 50px;
   }
   
-  /* Forces absolute CSS Grid columns */
+  /* OVERRIDE: Massive, wrapping headline for mobile */
+  h1 {
+    font-size: 2.6rem; 
+    white-space: normal; /* Allows the text to drop to two lines */
+    line-height: 1.1; /* Keeps the two lines tightly grouped */
+    margin-bottom: 15px;
+  }
+
   .grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Exactly 2 columns */
-    gap: 10px; /* Small gap for tiny screens */
+    grid-template-columns: 1fr 1fr; 
+    gap: 10px; 
   }
   
   .card {
@@ -290,7 +291,7 @@ h1 {
   }
   
   .card-front, .card-back {
-    padding: 12px; /* Extra tight padding to fit text */
+    padding: 12px; 
   }
   
   .card-front h2 {
@@ -453,7 +454,6 @@ const i18n = {
   }
 };
 
-// Language Engine with LocalStorage
 let currentLang = localStorage.getItem('siteLang') || 'en';
 
 function applyLanguage(lang) {
@@ -495,7 +495,6 @@ function toggleLanguage() {
   applyLanguage(currentLang);
 }
 
-// Run on initial page load
 window.onload = function() {
   applyLanguage(currentLang);
 };
