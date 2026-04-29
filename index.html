@@ -5,19 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Do NOT Hire Me.</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
     
     body { 
       font-family: 'Inter', sans-serif; 
       background: #fdfdfd; 
-      color: #111827; 
+      color: #000; 
       display: flex; 
       flex-direction: column; 
       align-items: center; 
       justify-content: center; 
       min-height: 100vh; 
       margin: 0; 
-      padding: 40px 20px; 
+      padding: 60px 20px; 
       text-align: center; 
       box-sizing: border-box;
     }
@@ -66,7 +66,7 @@
       width: 100%; 
       max-width: 320px; 
       height: 280px; 
-      perspective: 1000px; /* Gives the 3D depth */
+      perspective: 1000px; 
       cursor: crosshair; 
     }
     
@@ -116,10 +116,10 @@
     }
     
     .card-back { 
-      background: #111827; 
+      background: #000; /* Pure black background now */
       color: #fff; 
       transform: rotateY(180deg); 
-      border: 3px solid #111827;
+      border: 3px solid #000;
     }
     
     .card-back p { 
@@ -129,13 +129,34 @@
     }
     
     .card-back span { 
-      color: #38bdf8; 
+      color: #ef4444; /* Changed the weird blue to the danger red */
       font-weight: 800; 
       font-size: 1.3rem; 
     }
+
+    .plot-twist {
+      max-width: 600px;
+      margin: 60px auto 0 auto;
+      padding: 25px 30px;
+      background: #f3f4f6;
+      border-left: 5px solid #000;
+      text-align: left;
+    }
+
+    .plot-twist p {
+      margin: 0;
+      font-size: 1.05rem;
+      color: #374151;
+      line-height: 1.6;
+    }
+
+    .plot-twist strong {
+      color: #000;
+      font-weight: 700;
+    }
     
     .btn { 
-      margin-top: 60px; 
+      margin-top: 40px; 
       padding: 18px 40px; 
       background: #000; 
       color: #fff; 
@@ -157,6 +178,7 @@
     @media (max-width: 768px) {
       .card { height: 240px; }
       .card-front h2 { font-size: 1.5rem; }
+      .plot-twist { padding: 20px; }
     }
   </style>
 </head>
@@ -199,6 +221,10 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="plot-twist">
+    <p><strong>The Plot Twist:</strong> Beyond the metrics, I bring a global perspective shaped by 12 formative years in Cape Town. I am also the Co-Founder and Head of Operations of an Odoo Implementation agency I built alongside my brother. I don't just optimize business processes—I know what it takes to build them from the ground up.</p>
   </div>
 
   <a href="CV_Anonymous.pdf" target="_blank" class="btn">I think we can handle that. View CV.</a>
