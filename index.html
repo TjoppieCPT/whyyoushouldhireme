@@ -18,6 +18,7 @@ body {
   align-items: center;
   padding: 10vh 20px 80px;
   text-align: center;
+  overflow-x: hidden; /* Prevents any horizontal scrolling */
 }
 
 /* The Apple-style Brutalist Segmented Control */
@@ -73,12 +74,14 @@ body {
   color: #fff;
 }
 
+/* Updated H1 to perfectly scale and stay on ONE line */
 h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(0.9rem, 3.5vw, 4rem); 
   font-weight: 900;
-  letter-spacing: -2px;
+  letter-spacing: -1px;
   margin-bottom: 10px;
-  max-width: 900px;
+  max-width: 100%;
+  white-space: nowrap; /* Strictly enforces single line */
 }
 
 .subtitle {
@@ -90,11 +93,11 @@ h1 {
   line-height: 1.6;
 }
 
-/* The subtle pulsing instruction */
+/* The subtly pulsing instruction */
 .instruction {
   font-size: 0.85rem;
   font-weight: 700;
-  color: #555; /* Subtle grey instead of red */
+  color: #555; 
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-bottom: 50px; 
@@ -119,6 +122,7 @@ h1 {
 .delay-2 { animation-delay: 0.6s; }
 .delay-3 { animation-delay: 1.0s; }
 
+/* Desktop Flexbox Grid */
 .grid {
   display: flex;
   justify-content: center;
@@ -173,6 +177,14 @@ h1 {
 .card:hover .card-front {
   transform: translate(-4px, -4px);
   box-shadow: 12px 12px 0px #000;
+}
+
+.card-num {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #000;
+  margin-bottom: 15px;
+  line-height: 1;
 }
 
 .card-front h2 {
@@ -250,10 +262,72 @@ h1 {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Tablet adjustments */
 @media (max-width: 900px) {
-  .card { height: 280px; }
+  .card { height: 280px; max-width: 300px;}
   .card-front h2 { font-size: 1.4rem; }
+  .card-num { font-size: 1.8rem; }
   .lang-switch { top: 15px; right: 15px; } 
+}
+
+/* Strict Mobile 2x2 Grid Fix */
+@media (max-width: 600px) {
+  body {
+    padding: 12vh 15px 50px;
+  }
+  
+  /* Forces absolute CSS Grid columns */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Exactly 2 columns */
+    gap: 10px; /* Small gap for tiny screens */
+  }
+  
+  .card {
+    width: 100%; 
+    max-width: none;
+    height: 230px; 
+  }
+  
+  .card-front, .card-back {
+    padding: 12px; /* Extra tight padding to fit text */
+  }
+  
+  .card-front h2 {
+    font-size: 1rem; 
+  }
+  
+  .card-num {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+  }
+  
+  .card-back p {
+    font-size: 0.75rem; 
+    line-height: 1.35;
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    hyphens: auto; 
+  }
+  
+  .subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+  }
+  
+  .instruction {
+    font-size: 0.7rem;
+    margin-bottom: 30px;
+  }
+  
+  .btn {
+    padding: 15px 30px;
+    font-size: 1rem;
+  }
+
+  .cta {
+    margin-top: 50px;
+  }
 }
 </style>
 </head>
@@ -279,7 +353,8 @@ h1 {
   <div class="card" onclick="flipCard(this)">
     <div class="card-inner">
       <div class="card-front">
-        <h2 id="t-c1h">1. I will destroy your current workflows.</h2>
+        <div class="card-num">1</div>
+        <h2 id="t-c1h">I will destroy your current workflows.</h2>
       </div>
       <div class="card-back">
         <p id="t-c1p">Because I use Lean/Kaizen and AnyLogic simulation to <span>reduce process flow time by 67%</span>. I optimise until it's perfect.</p>
@@ -290,7 +365,8 @@ h1 {
   <div class="card" onclick="flipCard(this)">
     <div class="card-inner">
       <div class="card-front">
-        <h2 id="t-c2h">2. I am obsessed with the numbers.</h2>
+        <div class="card-num">2</div>
+        <h2 id="t-c2h">I am obsessed with the numbers.</h2>
       </div>
       <div class="card-back">
         <p id="t-c2p">I automate disruption analysis using Python & R, successfully safeguarding <span>€10M+ in digital inventory</span> across 30,000+ touchpoints.</p>
@@ -301,7 +377,8 @@ h1 {
   <div class="card" onclick="flipCard(this)">
     <div class="card-inner">
       <div class="card-front">
-        <h2 id="t-c3h">3. I refuse to just "do what I am told."</h2>
+        <div class="card-num">3</div>
+        <h2 id="t-c3h">I refuse to just "do what I am told."</h2>
       </div>
       <div class="card-back">
         <p id="t-c3p">I proactively engineer solutions. It's why I ranked <span>#1 out of 63</span> in my M.Sc. Supply Chain class and hold a Certified AGILean Master.</p>
@@ -312,7 +389,8 @@ h1 {
   <div class="card" onclick="flipCard(this)">
     <div class="card-inner">
       <div class="card-front">
-        <h2 id="t-c4h">4. I don't think like an employee.</h2>
+        <div class="card-num">4</div>
+        <h2 id="t-c4h">I don't think like an employee.</h2>
       </div>
       <div class="card-back">
         <p id="t-c4p">As Co-Founder & Head of Ops of an Odoo agency I built with my brother, plus <span>12 years in Cape Town</span>, I bring a global, founder-level mindset.</p>
@@ -343,13 +421,13 @@ const i18n = {
     sub2: "I question everything.",
     sub3: "I optimise aggressively.",
     instruct: "Hover or tap cards to inspect",
-    c1h: "1. I will destroy your current workflows.",
+    c1h: "I will destroy your current workflows.",
     c1p: "Because I use Lean/Kaizen and AnyLogic simulation to <span>reduce process flow time by 67%</span>. I optimise until it's perfect.",
-    c2h: "2. I am obsessed with the numbers.",
+    c2h: "I am obsessed with the numbers.",
     c2p: "I automate disruption analysis using Python & R, successfully safeguarding <span>€10M+ in digital inventory</span> across 30,000+ touchpoints.",
-    c3h: "3. I refuse to just \"do what I am told.\"",
+    c3h: "I refuse to just \"do what I am told.\"",
     c3p: "I proactively engineer solutions. It's why I ranked <span>#1 out of 63</span> in my M.Sc. Supply Chain class and hold a Certified AGILean Master.",
-    c4h: "4. I don't think like an employee.",
+    c4h: "I don't think like an employee.",
     c4p: "As Co-Founder & Head of Ops of an Odoo agency I built with my brother, plus <span>12 years in Cape Town</span>, I bring a global, founder-level mindset.",
     btn: "I think we can handle that. Request CV.",
     ctasub: "Most companies want employees. The best ones want leverage.",
@@ -361,13 +439,13 @@ const i18n = {
     sub2: "Ich hinterfrage alles.",
     sub3: "Ich optimiere aggressiv.",
     instruct: "Karten zum Aufdecken antippen oder darüberfahren",
-    c1h: "1. Ich zerstöre Ihre aktuellen Workflows.",
+    c1h: "Ich zerstöre Ihre aktuellen Workflows.",
     c1p: "Weil ich Lean/Kaizen und AnyLogic-Simulationen einsetze, um <span>Prozessdurchlaufzeiten um 67% zu reduzieren</span>. Ich optimiere, bis es perfekt ist.",
-    c2h: "2. Ich bin besessen von Zahlen.",
+    c2h: "Ich bin besessen von Zahlen.",
     c2p: "Ich automatisiere Störungsanalysen mit Python & R und schütze erfolgreich <span>über 10 Mio. € an digitalem Inventar</span> an 30.000+ Touchpoints.",
-    c3h: "3. Ich weigere mich, nur 'Dienst nach Vorschrift' zu tun.",
+    c3h: "Ich weigere mich, nur 'Dienst nach Vorschrift' zu tun.",
     c3p: "Ich entwickle proaktiv Lösungen. Deshalb war ich <span>Nr. 1 von 63</span> im M.Sc. Supply Chain und bin Certified AGILean Master.",
-    c4h: "4. Ich denke nicht wie ein Angestellter.",
+    c4h: "Ich denke nicht wie ein Angestellter.",
     c4p: "Als Co-Founder & Head of Ops einer Odoo-Agentur (mit meinem Bruder) und <span>12 Jahren in Kapstadt</span> bringe ich ein echtes globales Founder-Mindset mit.",
     btn: "Das kriegen wir hin. CV anfordern.",
     ctasub: "Die meisten Firmen suchen Angestellte. Die besten suchen einen echten Hebel.",
