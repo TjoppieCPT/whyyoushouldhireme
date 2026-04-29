@@ -52,20 +52,22 @@
       100% { opacity: 1; }
     }
     
+    /* Widened the grid to 1300px to allow 4 cards in a row */
     .grid { 
       display: flex; 
-      gap: 30px; 
+      gap: 20px; 
       flex-wrap: wrap; 
       justify-content: center; 
-      max-width: 750px; /* Forces a perfect 2x2 layout for the 4 cards */
+      max-width: 1300px; 
       width: 100%;
     }
     
+    /* Adjusted width and height slightly to fit 4-across perfectly */
     .card { 
       background: transparent; 
       width: 100%; 
-      max-width: 320px; 
-      height: 280px; 
+      max-width: 280px; 
+      height: 300px; 
       perspective: 1000px; 
       cursor: crosshair; 
     }
@@ -109,7 +111,7 @@
     }
     
     .card-front h2 { 
-      font-size: 1.8rem; 
+      font-size: 1.6rem; 
       font-weight: 900; 
       margin: 0; 
       line-height: 1.1;
@@ -123,15 +125,15 @@
     }
     
     .card-back p { 
-      font-size: 1.1rem; 
-      line-height: 1.6; 
+      font-size: 1.05rem; 
+      line-height: 1.5; 
       margin: 0; 
     }
     
     .card-back span { 
       color: #ef4444; 
       font-weight: 800; 
-      font-size: 1.3rem; 
+      font-size: 1.2rem; 
     }
     
     .btn { 
@@ -156,15 +158,15 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
 
-    @media (max-width: 768px) {
-      .card { height: 240px; }
+    @media (max-width: 900px) {
+      .card { height: 260px; max-width: 320px; }
       .card-front h2 { font-size: 1.5rem; }
     }
   </style>
 </head>
 <body>
 
-  <h1>3 Reasons You Should NOT Hire Me.</h1>
+  <h1>4 Reasons You Should NOT Hire Me.</h1>
   <p class="subtitle">A brief overview of why I might ruin your company's status quo.</p>
   <p class="instruction">Hover over the cards to inspect</p>
 
@@ -214,7 +216,7 @@
     </div>
   </div>
 
-  <a href="mailto:jimmywaynebrandon@gmail.com?subject=GitHub%20Profile%20-%20CV%20Request&body=I%20saw%20your%20GitHub%20and%20would%20love%20to%20take%20a%20look%20at%20your%20CV." class="btn">I think we can handle that. Request CV.</a>
+  <a href="mailto:jimmywaynebrandon@gmail.com?subject=Challenge%20Accepted.%20Send%20the%20CV.&body=Hi%20Brandon,%0D%0A%0D%0AAlright,%20I%20saw%20the%20GitHub%20page.%20You've%20convinced%20me%20that%20you%20might%20just%20be%20the%20right%20kind%20of%20disruptive%20for%20our%20team.%0D%0A%0D%0AI'd%20love%20to%20take%20a%20look%20at%20your%20CV%20and%20see%20the%20rest%20of%20the%20damage%20you've%20caused.%20Send%20it%20over!%0D%0A%0D%0ABest,%0D%0A[Your%20Name]" class="btn">I think we can handle that. Request CV.</a>
 
 </body>
 </html>
