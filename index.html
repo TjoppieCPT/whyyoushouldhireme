@@ -1,221 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Do NOT Hire Me. ;)</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
-    
-    body { 
-      font-family: 'Inter', sans-serif; 
-      background: #fdfdfd; 
-      color: #000; 
-      display: flex; 
-      flex-direction: column; 
-      align-items: center; 
-      justify-content: flex-start; 
-      min-height: 100vh; 
-      margin: 0; 
-      padding: 10vh 20px 80px 20px; 
-      text-align: center; 
-      box-sizing: border-box;
-    }
-    
-    h1 { 
-      font-size: clamp(2.5rem, 5vw, 4rem); 
-      font-weight: 900; 
-      margin-bottom: 10px; 
-      letter-spacing: -1.5px; 
-      color: #000;
-    }
-    
-    .subtitle { 
-      font-size: 1.2rem; 
-      color: #6b7280; 
-      margin-bottom: 10px; 
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Do NOT Hire Me ;) </title>
 
-    .instruction { 
-      font-size: 0.85rem; 
-      font-weight: 700; 
-      color: #ef4444; 
-      text-transform: uppercase; 
-      letter-spacing: 2px; 
-      margin-bottom: 70px; 
-      animation: pulse 2s infinite;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
 
-    @keyframes pulse {
-      0% { opacity: 1; }
-      50% { opacity: 0.5; }
-      100% { opacity: 1; }
-    }
-    
-    .grid { 
-      display: flex; 
-      gap: 20px; 
-      flex-wrap: wrap; 
-      justify-content: center; 
-      max-width: 1300px; 
-      width: 100%;
-    }
-    
-    .card { 
-      background: transparent; 
-      width: 100%; 
-      max-width: 280px; 
-      height: 300px; 
-      perspective: 1000px; 
-      cursor: crosshair; 
-    }
-    
-    .card-inner { 
-      width: 100%; 
-      height: 100%; 
-      position: relative;
-      transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1); 
-      transform-style: preserve-3d; 
-    }
-    
-    .card:hover .card-inner { 
-      transform: rotateY(180deg); 
-    }
-    
-    .card-front, .card-back { 
-      position: absolute; 
-      width: 100%; 
-      height: 100%; 
-      backface-visibility: hidden; 
-      display: flex; 
-      flex-direction: column; 
-      align-items: center; 
-      justify-content: center; 
-      padding: 30px; 
-      box-sizing: border-box; 
-      border-radius: 4px;
-    }
-    
-    .card-front { 
-      background: #fff; 
-      color: #000; 
-      border: 3px solid #000;
-      box-shadow: 8px 8px 0px #000;
-      transition: box-shadow 0.3s;
-    }
+<style>
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  background: radial-gradient(circle at top, #f5f5f5, #ffffff);
+  color: #111;
+  text-align: center;
+}
 
-    .card:hover .card-front {
-      box-shadow: 0px 0px 0px #000;
-    }
-    
-    .card-front h2 { 
-      font-size: 1.6rem; 
-      font-weight: 900; 
-      margin: 0; 
-      line-height: 1.1;
-    }
-    
-    .card-back { 
-      background: #000; 
-      color: #fff; 
-      transform: rotateY(180deg); 
-      border: 3px solid #000;
-    }
-    
-    .card-back p { 
-      font-size: 1.05rem; 
-      line-height: 1.5; 
-      margin: 0; 
-    }
-    
-    .card-back span { 
-      color: #ef4444; 
-      font-weight: 800; 
-      font-size: 1.2rem; 
-    }
-    
-    .btn { 
-      margin-top: 100px; 
-      padding: 18px 40px; 
-      background: #000; 
-      color: #fff; 
-      text-decoration: none; 
-      font-weight: 800; 
-      font-size: 1.2rem; 
-      border: 2px solid #000;
-      transition: all 0.3s ease; 
-      cursor: pointer;
-      position: relative;
-      z-index: 10;
-    }
-    
-    .btn:hover { 
-      background: #fff; 
-      color: #000; 
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
+/* HERO */
+.hero {
+  padding: 100px 20px 40px;
+}
 
-    @media (max-width: 900px) {
-      .card { height: 260px; max-width: 320px; }
-      .card-front h2 { font-size: 1.5rem; }
-      .btn { margin-top: 60px; } 
-    }
-  </style>
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* STATS */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin: 40px 0;
+}
+
+.stat {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.stat span {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #777;
+}
+
+/* CARDS */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap: 25px;
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+}
+
+.card h2 {
+  font-size: 1.4rem;
+}
+
+.card p {
+  opacity: 0;
+  max-height: 0;
+  transition: 0.4s ease;
+  margin-top: 10px;
+}
+
+.card.active p {
+  opacity: 1;
+  max-height: 200px;
+}
+
+/* CTA */
+.cta {
+  margin: 80px 0;
+}
+
+.btn {
+  padding: 18px 40px;
+  background: black;
+  color: white;
+  font-weight: 800;
+  text-decoration: none;
+  border-radius: 40px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: white;
+  color: black;
+  border: 2px solid black;
+}
+
+/* subtle animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fade 1s forwards;
+}
+
+@keyframes fade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
 </head>
+
 <body>
 
-  <h1>4 Reasons You Should NOT Hire Me.</h1>
-  <p class="subtitle">A brief overview of why I might ruin your company's status quo.</p>
-  <p class="instruction">Hover over the cards to inspect</p>
+<div class="hero fade-in">
+  <h1>4 Reasons You Should NOT Hire Me</h1>
+  <p>I break systems. I question everything. I optimize aggressively.</p>
+</div>
 
-  <div class="grid">
-    <div class="card">
-      <div class="card-inner">
-        <div class="card-front">
-          <h2>1. I will destroy your current workflows.</h2>
-        </div>
-        <div class="card-back">
-          <p>Because I use Lean/Kaizen and AnyLogic simulation to <span>reduce process flow time by 67%</span>. I optimize until it's perfect.</p>
-        </div>
-      </div>
-    </div>
+<div class="stats fade-in">
+  <div class="stat">€10M+<span>Inventory Protected</span></div>
+  <div class="stat">#1<span>M.Sc. Ranking</span></div>
+  <div class="stat">5 Years<span>US Corporate</span></div>
+  <div class="stat">12 Years<span>International</span></div>
+</div>
 
-    <div class="card">
-      <div class="card-inner">
-        <div class="card-front">
-          <h2>2. I am obsessed with the numbers.</h2>
-        </div>
-        <div class="card-back">
-          <p>I automate disruption analysis using Python & R, successfully safeguarding <span>€10M+ in digital inventory</span> across 30,000+ touchpoints.</p>
-        </div>
-      </div>
-    </div>
+<div class="grid">
 
-    <div class="card">
-      <div class="card-inner">
-        <div class="card-front">
-          <h2>3. I refuse to just "do what I am told."</h2>
-        </div>
-        <div class="card-back">
-          <p>I proactively engineer solutions. It's why I ranked <span>#1 out of 63</span> in my M.Sc. Supply Chain class and hold a Certified AGILean Master.</p>
-        </div>
-      </div>
-    </div>
+<div class="card" onclick="toggle(this)">
+  <h2>1. I destroy inefficient workflows</h2>
+  <p>Using Lean + simulation, I cut process time by up to <b>67%</b>. Most teams aren’t ready for that level of change.</p>
+</div>
 
-    <div class="card">
-      <div class="card-inner">
-        <div class="card-front">
-          <h2>4. I don't think like an employee.</h2>
-        </div>
-        <div class="card-back">
-          <p>As Co-Founder & Head of Ops of an Odoo agency I built with my brother, plus <span>12 years in Cape Town</span>, I bring a global, founder-level mindset to the table.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="card" onclick="toggle(this)">
+  <h2>2. I obsess over data</h2>
+  <p>I built Python/R systems protecting <b>€10M+</b> across 30,000+ touchpoints.</p>
+</div>
 
-  <a href="mailto:jimmywaynebrandon@gmail.com?subject=GitHub%20Profile%20-%20CV%20Request&body=Hi%20Brandon%2C%0D%0A%0D%0AI%20saw%20your%20GitHub%20page%20and%20would%20love%20to%20take%20a%20look%20at%20your%20CV.%0D%0A%0D%0ABest%2C%0D%0A%5BYour%20Name%5D" class="btn">I think we can handle that. Request CV.</a>
+<div class="card" onclick="toggle(this)">
+  <h2>3. I challenge authority</h2>
+  <p>I don’t execute blindly. I redesign systems. That’s why I ranked <b>#1</b>.</p>
+</div>
+
+<div class="card" onclick="toggle(this)">
+  <h2>4. I think like a founder</h2>
+  <p>Built an Odoo agency + 12 years abroad → I don’t think like an employee.</p>
+</div>
+
+</div>
+
+<div class="cta fade-in">
+  <a class="btn" href="mailto:jimmywaynebrandon@gmail.com">
+    Let’s talk → Request CV
+  </a>
+</div>
+
+<script>
+function toggle(el){
+  el.classList.toggle("active");
+}
+</script>
 
 </body>
 </html>
