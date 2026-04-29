@@ -60,12 +60,10 @@ h1 {
   position: relative;
 }
 
-/* hover desktop */
 .card:hover .card-inner {
   transform: rotateY(180deg);
 }
 
-/* click mobile */
 .card.flipped .card-inner {
   transform: rotateY(180deg);
 }
@@ -131,7 +129,9 @@ h1 {
 }
 
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   padding: 20px 48px;
   background: #111;
   color: #fff;
@@ -143,12 +143,43 @@ h1 {
   box-shadow: 0 10px 25px rgba(0,0,0,0.12);
 }
 
+/* arrow */
+.arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+/* hover effect */
 .btn:hover {
   transform: translateY(-4px);
   box-shadow: 0 20px 40px rgba(0,0,0,0.16);
   background: #fff;
   color: #111;
   border: 1px solid #111;
+}
+
+.btn:hover .arrow {
+  transform: translateX(6px);
+}
+
+/* CTA SUBTEXT */
+.cta-sub {
+  margin-top: 18px;
+  color: #777;
+  font-size: 0.95rem;
+  letter-spacing: 0.2px;
+
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 0.8s;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* mobile */
@@ -219,7 +250,12 @@ h1 {
 <div class="cta">
   <a class="btn" href="mailto:jimmywaynebrandon@gmail.com?subject=GitHub%20Profile%20-%20CV%20Request&body=Hi%20Brandon,%0D%0A%0D%0AI%20saw%20your%20GitHub%20page%20and%20would%20love%20to%20take%20a%20look%20at%20your%20CV.%0D%0A%0D%0ABest,%0D%0A[Your%20Name]">
     I think we can handle that. Request CV.
+    <span class="arrow">→</span>
   </a>
+
+  <p class="cta-sub">
+    Most companies want employees. The best ones want leverage.
+  </p>
 </div>
 
 <script>
