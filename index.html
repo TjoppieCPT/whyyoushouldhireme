@@ -20,33 +20,57 @@ body {
   text-align: center;
 }
 
-/* The Language Toggle Button */
-.lang-toggle {
+/* The Apple-style Brutalist Segmented Control */
+.lang-switch {
   position: fixed;
   top: 25px;
   right: 25px;
+  display: flex;
   background: #fff;
-  color: #000;
-  border: 2px solid #000;
-  padding: 8px 18px;
-  border-radius: 30px;
-  font-weight: 800;
-  font-size: 0.9rem;
+  border: 3px solid #000;
+  border-radius: 50px;
+  padding: 4px;
+  box-shadow: 6px 6px 0px #000;
   cursor: pointer;
   z-index: 1000;
-  box-shadow: 4px 4px 0px #000;
-  transition: all 0.2s ease;
+  width: 110px;
   user-select: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.lang-toggle:hover {
+.lang-switch:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0px #000;
+  box-shadow: 8px 8px 0px #000;
 }
 
-.lang-toggle:active {
-  transform: translate(2px, 2px);
-  box-shadow: 0px 0px 0px #000;
+.lang-slider {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  height: calc(100% - 8px);
+  background: #000;
+  border-radius: 50px;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.lang-switch.de .lang-slider {
+  transform: translateX(100%);
+}
+
+.lang-label {
+  flex: 1;
+  text-align: center;
+  font-weight: 900;
+  font-size: 0.9rem;
+  padding: 6px 0;
+  z-index: 2;
+  color: #000;
+  transition: color 0.3s ease;
+}
+
+.lang-label.active {
+  color: #fff;
 }
 
 h1 {
@@ -62,8 +86,25 @@ h1 {
   font-weight: 800;
   color: #ef4444; 
   max-width: 700px;
-  margin: 0 auto 60px auto;
+  margin: 0 auto 25px auto;
   line-height: 1.6;
+}
+
+/* The subtle pulsing instruction */
+.instruction {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #555; /* Subtle grey instead of red */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 50px; 
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
 }
 
 .fly-in {
@@ -212,12 +253,17 @@ h1 {
 @media (max-width: 900px) {
   .card { height: 280px; }
   .card-front h2 { font-size: 1.4rem; }
+  .lang-switch { top: 15px; right: 15px; } 
 }
 </style>
 </head>
 <body>
 
-<div class="lang-toggle" onclick="toggleLanguage()">DE / EN</div>
+<div class="lang-switch" id="lang-switch" onclick="toggleLanguage()">
+  <div class="lang-slider"></div>
+  <div class="lang-label active" id="lbl-en">EN</div>
+  <div class="lang-label" id="lbl-de">DE</div>
+</div>
 
 <h1 id="t-title">4 Reasons You Should NOT Hire Me.</h1>
 
@@ -226,6 +272,8 @@ h1 {
   <span class="fly-in delay-2" id="t-sub2">I question everything.</span>
   <span class="fly-in delay-3" id="t-sub3">I optimise aggressively.</span>
 </p>
+
+<p class="instruction" id="t-instruct">Hover or tap cards to inspect</p>
 
 <div class="grid">
   <div class="card" onclick="flipCard(this)">
@@ -294,6 +342,7 @@ const i18n = {
     sub1: "I break systems.",
     sub2: "I question everything.",
     sub3: "I optimise aggressively.",
+    instruct: "Hover or tap cards to inspect",
     c1h: "1. I will destroy your current workflows.",
     c1p: "Because I use Lean/Kaizen and AnyLogic simulation to <span>reduce process flow time by 67%</span>. I optimise until it's perfect.",
     c2h: "2. I am obsessed with the numbers.",
@@ -311,6 +360,7 @@ const i18n = {
     sub1: "Ich breche Systeme.",
     sub2: "Ich hinterfrage alles.",
     sub3: "Ich optimiere aggressiv.",
+    instruct: "Karten zum Aufdecken antippen oder darüberfahren",
     c1h: "1. Ich zerstöre Ihre aktuellen Workflows.",
     c1p: "Weil ich Lean/Kaizen und AnyLogic-Simulationen einsetze, um <span>Prozessdurchlaufzeiten um 67% zu reduzieren</span>. Ich optimiere, bis es perfekt ist.",
     c2h: "2. Ich bin besessen von Zahlen.",
@@ -325,34 +375,52 @@ const i18n = {
   }
 };
 
-let currentLang = 'en';
+// Language Engine with LocalStorage
+let currentLang = localStorage.getItem('siteLang') || 'en';
+
+function applyLanguage(lang) {
+  const switchEl = document.getElementById('lang-switch');
+  const lblEn = document.getElementById('lbl-en');
+  const lblDe = document.getElementById('lbl-de');
+
+  if (lang === 'de') {
+    switchEl.classList.add('de');
+    lblDe.classList.add('active');
+    lblEn.classList.remove('active');
+  } else {
+    switchEl.classList.remove('de');
+    lblEn.classList.add('active');
+    lblDe.classList.remove('active');
+  }
+
+  document.getElementById('t-title').innerHTML = i18n[lang].title;
+  document.getElementById('t-sub1').innerHTML = i18n[lang].sub1;
+  document.getElementById('t-sub2').innerHTML = i18n[lang].sub2;
+  document.getElementById('t-sub3').innerHTML = i18n[lang].sub3;
+  document.getElementById('t-instruct').innerHTML = i18n[lang].instruct;
+  document.getElementById('t-c1h').innerHTML = i18n[lang].c1h;
+  document.getElementById('t-c1p').innerHTML = i18n[lang].c1p;
+  document.getElementById('t-c2h').innerHTML = i18n[lang].c2h;
+  document.getElementById('t-c2p').innerHTML = i18n[lang].c2p;
+  document.getElementById('t-c3h').innerHTML = i18n[lang].c3h;
+  document.getElementById('t-c3p').innerHTML = i18n[lang].c3p;
+  document.getElementById('t-c4h').innerHTML = i18n[lang].c4h;
+  document.getElementById('t-c4p').innerHTML = i18n[lang].c4p;
+  document.getElementById('t-btn').innerHTML = i18n[lang].btn;
+  document.getElementById('t-ctasub').innerHTML = i18n[lang].ctasub;
+  document.getElementById('t-mailto').href = i18n[lang].mailto;
+}
 
 function toggleLanguage() {
   currentLang = currentLang === 'en' ? 'de' : 'en';
-  
-  document.getElementById('t-title').innerHTML = i18n[currentLang].title;
-  document.getElementById('t-sub1').innerHTML = i18n[currentLang].sub1;
-  document.getElementById('t-sub2').innerHTML = i18n[currentLang].sub2;
-  document.getElementById('t-sub3').innerHTML = i18n[currentLang].sub3;
-  
-  document.getElementById('t-c1h').innerHTML = i18n[currentLang].c1h;
-  document.getElementById('t-c1p').innerHTML = i18n[currentLang].c1p;
-  
-  document.getElementById('t-c2h').innerHTML = i18n[currentLang].c2h;
-  document.getElementById('t-c2p').innerHTML = i18n[currentLang].c2p;
-  
-  document.getElementById('t-c3h').innerHTML = i18n[currentLang].c3h;
-  document.getElementById('t-c3p').innerHTML = i18n[currentLang].c3p;
-  
-  document.getElementById('t-c4h').innerHTML = i18n[currentLang].c4h;
-  document.getElementById('t-c4p').innerHTML = i18n[currentLang].c4p;
-  
-  document.getElementById('t-btn').innerHTML = i18n[currentLang].btn;
-  document.getElementById('t-ctasub').innerHTML = i18n[currentLang].ctasub;
-  
-  // Updates the email body to match the language
-  document.getElementById('t-mailto').href = i18n[currentLang].mailto;
+  localStorage.setItem('siteLang', currentLang);
+  applyLanguage(currentLang);
 }
+
+// Run on initial page load
+window.onload = function() {
+  applyLanguage(currentLang);
+};
 </script>
 
 </body>
