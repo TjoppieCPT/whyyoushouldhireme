@@ -73,13 +73,16 @@ body {
   color: #fff;
 }
 
+/* THE FIX: Allows wrapping but balances it beautifully */
 h1 {
-  font-size: clamp(2rem, 4vw, 4rem); 
+  font-size: clamp(2rem, 3.8vw, 4rem); 
   font-weight: 900;
   letter-spacing: -1.5px;
   margin-bottom: 10px;
-  max-width: 1000px;
-  white-space: nowrap; /* Stays on one line for desktop */
+  max-width: 95vw; /* Prevents edge bleeding */
+  white-space: normal; /* Allows the longer German to wrap */
+  line-height: 1.1; /* Keeps the wrapped lines tight together */
+  text-wrap: balance; /* Modern CSS: ensures the two lines look perfectly balanced */
 }
 
 .subtitle {
@@ -268,14 +271,6 @@ h1 {
 @media (max-width: 600px) {
   body {
     padding: 12vh 15px 50px;
-  }
-  
-  /* OVERRIDE: Massive, wrapping headline for mobile */
-  h1 {
-    font-size: 2.6rem; 
-    white-space: normal; /* Allows the text to drop to two lines */
-    line-height: 1.1; /* Keeps the two lines tightly grouped */
-    margin-bottom: 15px;
   }
 
   .grid {
