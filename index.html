@@ -20,18 +20,48 @@ body {
   text-align: center;
 }
 
+/* The Language Toggle Button */
+.lang-toggle {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-weight: 800;
+  font-size: 0.9rem;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 4px 4px 0px #000;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.lang-toggle:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #000;
+}
+
+.lang-toggle:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px #000;
+}
+
 h1 {
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 900;
   letter-spacing: -2px;
   margin-bottom: 10px;
+  max-width: 900px;
 }
 
 .subtitle {
   font-size: 1.25rem;
   font-weight: 800;
   color: #ef4444; 
-  max-width: 650px;
+  max-width: 700px;
   margin: 0 auto 60px auto;
   line-height: 1.6;
 }
@@ -187,22 +217,24 @@ h1 {
 </head>
 <body>
 
-<h1>4 Reasons You Should NOT Hire Me.</h1>
+<div class="lang-toggle" onclick="toggleLanguage()">DE / EN</div>
+
+<h1 id="t-title">4 Reasons You Should NOT Hire Me.</h1>
 
 <p class="subtitle">
-  <span class="fly-in delay-1">I break systems.</span>
-  <span class="fly-in delay-2">I question everything.</span>
-  <span class="fly-in delay-3">I optimize aggressively.</span>
+  <span class="fly-in delay-1" id="t-sub1">I break systems.</span>
+  <span class="fly-in delay-2" id="t-sub2">I question everything.</span>
+  <span class="fly-in delay-3" id="t-sub3">I optimise aggressively.</span>
 </p>
 
 <div class="grid">
   <div class="card" onclick="flipCard(this)">
     <div class="card-inner">
       <div class="card-front">
-        <h2>1. I will destroy your current workflows.</h2>
+        <h2 id="t-c1h">1. I will destroy your current workflows.</h2>
       </div>
       <div class="card-back">
-        <p>Because I use Lean/Kaizen and AnyLogic simulation to <span>reduce process flow time by 67%</span>. I optimize until it's perfect.</p>
+        <p id="t-c1p">Because I use Lean/Kaizen and AnyLogic simulation to <span>reduce process flow time by 67%</span>. I optimise until it's perfect.</p>
       </div>
     </div>
   </div>
@@ -210,10 +242,10 @@ h1 {
   <div class="card" onclick="flipCard(this)">
     <div class="card-inner">
       <div class="card-front">
-        <h2>2. I am obsessed with the numbers.</h2>
+        <h2 id="t-c2h">2. I am obsessed with the numbers.</h2>
       </div>
       <div class="card-back">
-        <p>I automate disruption analysis using Python & R, successfully safeguarding <span>€10M+ in digital inventory</span> across 30,000+ touchpoints.</p>
+        <p id="t-c2p">I automate disruption analysis using Python & R, successfully safeguarding <span>€10M+ in digital inventory</span> across 30,000+ touchpoints.</p>
       </div>
     </div>
   </div>
@@ -221,10 +253,10 @@ h1 {
   <div class="card" onclick="flipCard(this)">
     <div class="card-inner">
       <div class="card-front">
-        <h2>3. I refuse to just "do what I am told."</h2>
+        <h2 id="t-c3h">3. I refuse to just "do what I am told."</h2>
       </div>
       <div class="card-back">
-        <p>I proactively engineer solutions. It's why I ranked <span>#1 out of 63</span> in my M.Sc. Supply Chain class and hold a Certified AGILean Master.</p>
+        <p id="t-c3p">I proactively engineer solutions. It's why I ranked <span>#1 out of 63</span> in my M.Sc. Supply Chain class and hold a Certified AGILean Master.</p>
       </div>
     </div>
   </div>
@@ -232,26 +264,94 @@ h1 {
   <div class="card" onclick="flipCard(this)">
     <div class="card-inner">
       <div class="card-front">
-        <h2>4. I don't think like an employee.</h2>
+        <h2 id="t-c4h">4. I don't think like an employee.</h2>
       </div>
       <div class="card-back">
-        <p>As Co-Founder & Head of Ops of an Odoo agency I built with my brother, plus <span>12 years in Cape Town</span>, I bring a global, founder-level mindset.</p>
+        <p id="t-c4p">As Co-Founder & Head of Ops of an Odoo agency I built with my brother, plus <span>12 years in Cape Town</span>, I bring a global, founder-level mindset.</p>
       </div>
     </div>
   </div>
 </div>
 
 <div class="cta">
-  <a class="btn" href="mailto:jimmywaynebrandon@gmail.com?subject=GitHub%20Profile%20-%20CV%20Request&body=Hi%20Brandon%2C%0D%0A%0D%0AI%20saw%20your%20GitHub%20page%20and%20would%20love%20to%20take%20a%20look%20at%20your%20CV.%0D%0A%0D%0ABest%2C%0D%0A%5BYour%20Name%5D">
-    I think we can handle that. Request CV.
+  <a id="t-mailto" class="btn" href="mailto:jimmywaynebrandon@gmail.com?subject=GitHub%20Profile%20-%20CV%20Request&body=Hi%20Brandon%2C%0D%0A%0D%0AI%20saw%20your%20GitHub%20page%20and%20would%20love%20to%20take%20a%20look%20at%20your%20CV.%0D%0A%0D%0ABest%2C%0D%0A%5BYour%20Name%5D">
+    <span id="t-btn">I think we can handle that. Request CV.</span>
     <span class="arrow">→</span>
   </a>
-  <p class="cta-sub">Most companies want employees. The best ones want leverage.</p>
+  <p class="cta-sub" id="t-ctasub">Most companies want employees. The best ones want leverage.</p>
 </div>
 
 <script>
+// Card flipping script
 function flipCard(card) {
   card.classList.toggle("flipped");
+}
+
+// Translation Dictionary
+const i18n = {
+  en: {
+    title: "4 Reasons You Should NOT Hire Me.",
+    sub1: "I break systems.",
+    sub2: "I question everything.",
+    sub3: "I optimise aggressively.",
+    c1h: "1. I will destroy your current workflows.",
+    c1p: "Because I use Lean/Kaizen and AnyLogic simulation to <span>reduce process flow time by 67%</span>. I optimise until it's perfect.",
+    c2h: "2. I am obsessed with the numbers.",
+    c2p: "I automate disruption analysis using Python & R, successfully safeguarding <span>€10M+ in digital inventory</span> across 30,000+ touchpoints.",
+    c3h: "3. I refuse to just \"do what I am told.\"",
+    c3p: "I proactively engineer solutions. It's why I ranked <span>#1 out of 63</span> in my M.Sc. Supply Chain class and hold a Certified AGILean Master.",
+    c4h: "4. I don't think like an employee.",
+    c4p: "As Co-Founder & Head of Ops of an Odoo agency I built with my brother, plus <span>12 years in Cape Town</span>, I bring a global, founder-level mindset.",
+    btn: "I think we can handle that. Request CV.",
+    ctasub: "Most companies want employees. The best ones want leverage.",
+    mailto: "mailto:jimmywaynebrandon@gmail.com?subject=GitHub%20Profile%20-%20CV%20Request&body=Hi%20Brandon%2C%0D%0A%0D%0AI%20saw%20your%20GitHub%20page%20and%20would%20love%20to%20take%20a%20look%20at%20your%20CV.%0D%0A%0D%0ABest%2C%0D%0A%5BYour%20Name%5D"
+  },
+  de: {
+    title: "4 Gründe, warum Sie mich NICHT einstellen sollten.",
+    sub1: "Ich breche Systeme.",
+    sub2: "Ich hinterfrage alles.",
+    sub3: "Ich optimiere aggressiv.",
+    c1h: "1. Ich zerstöre Ihre aktuellen Workflows.",
+    c1p: "Weil ich Lean/Kaizen und AnyLogic-Simulationen einsetze, um <span>Prozessdurchlaufzeiten um 67% zu reduzieren</span>. Ich optimiere, bis es perfekt ist.",
+    c2h: "2. Ich bin besessen von Zahlen.",
+    c2p: "Ich automatisiere Störungsanalysen mit Python & R und schütze erfolgreich <span>über 10 Mio. € an digitalem Inventar</span> an 30.000+ Touchpoints.",
+    c3h: "3. Ich weigere mich, nur 'Dienst nach Vorschrift' zu tun.",
+    c3p: "Ich entwickle proaktiv Lösungen. Deshalb war ich <span>Nr. 1 von 63</span> im M.Sc. Supply Chain und bin Certified AGILean Master.",
+    c4h: "4. Ich denke nicht wie ein Angestellter.",
+    c4p: "Als Co-Founder & Head of Ops einer Odoo-Agentur (mit meinem Bruder) und <span>12 Jahren in Kapstadt</span> bringe ich ein echtes globales Founder-Mindset mit.",
+    btn: "Das kriegen wir hin. CV anfordern.",
+    ctasub: "Die meisten Firmen suchen Angestellte. Die besten suchen einen echten Hebel.",
+    mailto: "mailto:jimmywaynebrandon@gmail.com?subject=GitHub%20Profil%20-%20CV%20Anfrage&body=Hallo%20Brandon%2C%0D%0A%0D%0AIch%20habe%20deine%20GitHub-Seite%20gesehen%20und%20w%C3%BCrde%20mir%20gerne%20deinen%20CV%20ansehen.%0D%0A%0D%0ABeste%20Gr%C3%BC%C3%9Fe%2C%0D%0A%5BIhr%20Name%5D"
+  }
+};
+
+let currentLang = 'en';
+
+function toggleLanguage() {
+  currentLang = currentLang === 'en' ? 'de' : 'en';
+  
+  document.getElementById('t-title').innerHTML = i18n[currentLang].title;
+  document.getElementById('t-sub1').innerHTML = i18n[currentLang].sub1;
+  document.getElementById('t-sub2').innerHTML = i18n[currentLang].sub2;
+  document.getElementById('t-sub3').innerHTML = i18n[currentLang].sub3;
+  
+  document.getElementById('t-c1h').innerHTML = i18n[currentLang].c1h;
+  document.getElementById('t-c1p').innerHTML = i18n[currentLang].c1p;
+  
+  document.getElementById('t-c2h').innerHTML = i18n[currentLang].c2h;
+  document.getElementById('t-c2p').innerHTML = i18n[currentLang].c2p;
+  
+  document.getElementById('t-c3h').innerHTML = i18n[currentLang].c3h;
+  document.getElementById('t-c3p').innerHTML = i18n[currentLang].c3p;
+  
+  document.getElementById('t-c4h').innerHTML = i18n[currentLang].c4h;
+  document.getElementById('t-c4p').innerHTML = i18n[currentLang].c4p;
+  
+  document.getElementById('t-btn').innerHTML = i18n[currentLang].btn;
+  document.getElementById('t-ctasub').innerHTML = i18n[currentLang].ctasub;
+  
+  // Updates the email body to match the language
+  document.getElementById('t-mailto').href = i18n[currentLang].mailto;
 }
 </script>
 
