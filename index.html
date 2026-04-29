@@ -11,15 +11,17 @@
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;
-  background: #fff;
+  background: #fdfdfd;
   color: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10vh 20px 80px;
   text-align: center;
-  padding: 100px 20px;
 }
 
-/* HERO */
 h1 {
-  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 900;
   letter-spacing: -2px;
   margin-bottom: 10px;
@@ -30,47 +32,42 @@ h1 {
   font-weight: 500;
   color: #555;
   max-width: 650px;
-  margin: 0 auto 80px auto;
+  margin: 0 auto 60px auto;
   line-height: 1.6;
 }
 
-/* GRID */
 .grid {
   display: flex;
   justify-content: center;
-  gap: 30px;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  padding: 20px 10px 40px;
+  gap: 25px;
+  flex-wrap: wrap; /* Fixed the horizontal scroll */
+  max-width: 1250px;
+  width: 100%;
 }
 
-/* CARD */
 .card {
-  width: 260px;
+  width: 100%;
+  max-width: 280px;
   height: 320px;
   perspective: 1200px;
-  flex: 0 0 auto;
+  cursor: pointer;
 }
 
 .card-inner {
   width: 100%;
   height: 100%;
-  transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
   transform-style: preserve-3d;
   position: relative;
 }
 
-.card:hover .card-inner {
-  transform: rotateY(180deg);
-}
-
+/* Works on desktop hover AND mobile click */
+.card:hover .card-inner, 
 .card.flipped .card-inner {
   transform: rotateY(180deg);
 }
 
-/* faces */
-.card-front,
-.card-back {
+.card-front, .card-back {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -79,34 +76,30 @@ h1 {
   box-sizing: border-box;
   backface-visibility: hidden;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-/* FRONT */
 .card-front {
   background: #fff;
   border: 1px solid #eaeaea;
-  box-shadow: 
-    0 15px 30px rgba(0,0,0,0.06),
-    0 5px 10px rgba(0,0,0,0.04);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.06), 0 5px 10px rgba(0,0,0,0.04);
   transition: all 0.3s ease;
 }
 
 .card:hover .card-front {
   transform: translateY(-6px);
-  box-shadow: 
-    0 25px 50px rgba(0,0,0,0.08),
-    0 10px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.08), 0 10px 20px rgba(0,0,0,0.05);
 }
 
 .card-front h2 {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 800;
-  line-height: 1.3;
+  line-height: 1.2;
+  margin: 0;
 }
 
-/* BACK */
 .card-back {
   background: #111;
   color: #fff;
@@ -115,17 +108,18 @@ h1 {
 }
 
 .card-back p {
-  font-size: 1rem;
+  font-size: 1.05rem;
   line-height: 1.5;
+  margin: 0;
 }
 
 .card-back span {
   font-weight: 800;
+  color: #38bdf8;
 }
 
-/* CTA */
 .cta {
-  margin-top: 100px;
+  margin-top: 80px;
 }
 
 .btn {
@@ -143,13 +137,11 @@ h1 {
   box-shadow: 0 10px 25px rgba(0,0,0,0.12);
 }
 
-/* arrow */
 .arrow {
   display: inline-block;
   transition: transform 0.3s ease;
 }
 
-/* hover effect */
 .btn:hover {
   transform: translateY(-4px);
   box-shadow: 0 20px 40px rgba(0,0,0,0.16);
@@ -162,13 +154,11 @@ h1 {
   transform: translateX(6px);
 }
 
-/* CTA SUBTEXT */
 .cta-sub {
   margin-top: 18px;
   color: #777;
   font-size: 0.95rem;
   letter-spacing: 0.2px;
-
   opacity: 0;
   transform: translateY(10px);
   animation: fadeIn 1s ease forwards;
@@ -176,86 +166,72 @@ h1 {
 }
 
 @keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* mobile */
 @media (max-width: 900px) {
-  .grid {
-    justify-content: flex-start;
-  }
+  .card { height: 280px; }
+  .card-front h2 { font-size: 1.3rem; }
 }
 </style>
 </head>
-
 <body>
 
-<h1>4 Reasons You Should NOT Hire Me</h1>
-
-<p class="subtitle">
-  I break systems. I question everything. I optimize aggressively.
-</p>
+<h1>4 Reasons You Should NOT Hire Me.</h1>
+<p class="subtitle">I break systems. I question everything. I optimize aggressively.</p>
 
 <div class="grid">
-
-<div class="card" onclick="flipCard(this)">
-  <div class="card-inner">
-    <div class="card-front">
-      <h2>1. I will destroy your current workflows.</h2>
-    </div>
-    <div class="card-back">
-      <p>Using Lean & simulation, I reduce process time by <span>67%</span>. I optimize until it's perfect.</p>
-    </div>
-  </div>
-</div>
-
-<div class="card" onclick="flipCard(this)">
-  <div class="card-inner">
-    <div class="card-front">
-      <h2>2. I am obsessed with the numbers.</h2>
-    </div>
-    <div class="card-back">
-      <p>I automate disruption analysis using Python & R, safeguarding <span>€10M+</span> across 30,000+ touchpoints.</p>
+  <div class="card" onclick="flipCard(this)">
+    <div class="card-inner">
+      <div class="card-front">
+        <h2>1. I will destroy your current workflows.</h2>
+      </div>
+      <div class="card-back">
+        <p>Because I use Lean/Kaizen and AnyLogic simulation to <span>reduce process flow time by 67%</span>. I optimize until it's perfect.</p>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="card" onclick="flipCard(this)">
-  <div class="card-inner">
-    <div class="card-front">
-      <h2>3. I refuse to just "do what I am told."</h2>
-    </div>
-    <div class="card-back">
-      <p>I proactively engineer solutions. That’s why I ranked <span>#1 out of 63</span>.</p>
+  <div class="card" onclick="flipCard(this)">
+    <div class="card-inner">
+      <div class="card-front">
+        <h2>2. I am obsessed with the numbers.</h2>
+      </div>
+      <div class="card-back">
+        <p>I automate disruption analysis using Python & R, successfully safeguarding <span>€10M+ in digital inventory</span> across 30,000+ touchpoints.</p>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="card" onclick="flipCard(this)">
-  <div class="card-inner">
-    <div class="card-front">
-      <h2>4. I don't think like an employee.</h2>
-    </div>
-    <div class="card-back">
-      <p>Founder mindset + 12 years abroad → I bring a <span>global perspective</span>.</p>
+  <div class="card" onclick="flipCard(this)">
+    <div class="card-inner">
+      <div class="card-front">
+        <h2>3. I refuse to just "do what I am told."</h2>
+      </div>
+      <div class="card-back">
+        <p>I proactively engineer solutions. It's why I ranked <span>#1 out of 63</span> in my M.Sc. Supply Chain class and hold a Certified AGILean Master.</p>
+      </div>
     </div>
   </div>
-</div>
 
+  <div class="card" onclick="flipCard(this)">
+    <div class="card-inner">
+      <div class="card-front">
+        <h2>4. I don't think like an employee.</h2>
+      </div>
+      <div class="card-back">
+        <p>As Co-Founder & Head of Ops of an Odoo agency I built with my brother, plus <span>12 years in Cape Town</span>, I bring a global, founder-level mindset.</p>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="cta">
-  <a class="btn" href="mailto:jimmywaynebrandon@gmail.com?subject=GitHub%20Profile%20-%20CV%20Request&body=Hi%20Brandon,%0D%0A%0D%0AI%20saw%20your%20GitHub%20page%20and%20would%20love%20to%20take%20a%20look%20at%20your%20CV.%0D%0A%0D%0ABest,%0D%0A[Your%20Name]">
+  <a class="btn" href="mailto:jimmywaynebrandon@gmail.com?subject=GitHub%20Profile%20-%20CV%20Request&body=Hi%20Brandon%2C%0D%0A%0D%0AI%20saw%20your%20GitHub%20page%20and%20would%20love%20to%20take%20a%20look%20at%20your%20CV.%0D%0A%0D%0ABest%2C%0D%0A%5BYour%20Name%5D">
     I think we can handle that. Request CV.
     <span class="arrow">→</span>
   </a>
-
-  <p class="cta-sub">
-    Most companies want employees. The best ones want leverage.
-  </p>
+  <p class="cta-sub">Most companies want employees. The best ones want leverage.</p>
 </div>
 
 <script>
