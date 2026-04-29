@@ -20,7 +20,6 @@
       padding: 60px 20px; 
       text-align: center; 
       box-sizing: border-box;
-      overflow-x: hidden; /* Prevents scrollbars when the badge jumps to the edge */
     }
     
     h1 { 
@@ -58,7 +57,7 @@
       gap: 30px; 
       flex-wrap: wrap; 
       justify-content: center; 
-      max-width: 1100px; 
+      max-width: 750px; /* Forces a perfect 2x2 layout for the 4 cards */
       width: 100%;
     }
     
@@ -134,30 +133,9 @@
       font-weight: 800; 
       font-size: 1.3rem; 
     }
-
-    .plot-twist {
-      max-width: 600px;
-      margin: 60px auto 0 auto;
-      padding: 25px 30px;
-      background: #f3f4f6;
-      border-left: 5px solid #000;
-      text-align: left;
-    }
-
-    .plot-twist p {
-      margin: 0;
-      font-size: 1.05rem;
-      color: #374151;
-      line-height: 1.6;
-    }
-
-    .plot-twist strong {
-      color: #000;
-      font-weight: 700;
-    }
     
     .btn { 
-      margin-top: 40px; 
+      margin-top: 60px; 
       padding: 18px 40px; 
       background: #000; 
       color: #fff; 
@@ -178,30 +156,9 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
 
-    /* The Runaway Badge Styling */
-    #runaway-badge {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: #ef4444;
-      color: #fff;
-      padding: 10px 20px;
-      font-weight: 800;
-      font-size: 0.9rem;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4);
-      transition: top 0.2s ease, left 0.2s ease;
-      z-index: 1000;
-      user-select: none;
-    }
-
     @media (max-width: 768px) {
       .card { height: 240px; }
       .card-front h2 { font-size: 1.5rem; }
-      .plot-twist { padding: 20px; }
-      /* Hides the runaway badge on mobile */
-      #runaway-badge { display: none; } 
     }
   </style>
 </head>
@@ -244,39 +201,20 @@
         </div>
       </div>
     </div>
+
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-front">
+          <h2>4. I don't think like an employee.</h2>
+        </div>
+        <div class="card-back">
+          <p>As Co-Founder & Head of Ops of an Odoo agency I built with my brother, plus <span>12 years in Cape Town</span>, I bring a global, founder-level mindset to the table.</p>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="plot-twist">
-    <p><strong>The Plot Twist:</strong> Beyond the metrics, I bring a global perspective shaped by 12 formative years in Cape Town. I am also the Co-Founder and Head of Operations of an Odoo Implementation agency I built alongside my brother. I don't just optimize business processes—I know what it takes to build them from the ground up.</p>
-  </div>
-
-  <a href="CV_Anonymous.pdf" target="_blank" class="btn">I think we can handle that. View CV.</a>
-
-  <div id="runaway-badge">Catch me before I'm gone ⏳</div>
-
-  <script>
-    const badge = document.getElementById('runaway-badge');
-    
-    badge.addEventListener('mouseover', function() {
-      const windowWidth = window.innerWidth;
-      const windowHeight = window.innerHeight;
-      const badgeWidth = badge.offsetWidth;
-      const badgeHeight = badge.offsetHeight;
-      
-      const randomX = Math.floor(Math.random() * (windowWidth - badgeWidth - 20));
-      const randomY = Math.floor(Math.random() * (windowHeight - badgeHeight - 20));
-      
-      badge.style.left = randomX + 'px';
-      badge.style.top = randomY + 'px';
-      badge.style.bottom = 'auto'; 
-      badge.style.right = 'auto'; 
-    });
-
-    badge.addEventListener('click', function() {
-      alert("Okay, you caught me. Clearly you don't give up easily. You should probably just click 'View CV' now.");
-      badge.style.display = 'none'; 
-    });
-  </script>
+  <a href="mailto:jimmywaynebrandon@gmail.com?subject=GitHub%20Profile%20-%20CV%20Request&body=I%20saw%20your%20GitHub%20and%20would%20love%20to%20take%20a%20look%20at%20your%20CV." class="btn">I think we can handle that. Request CV.</a>
 
 </body>
 </html>
