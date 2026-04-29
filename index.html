@@ -73,12 +73,13 @@ body {
   color: #fff;
 }
 
+/* Updated H1 to force a single line on desktop */
 h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(1.8rem, 3.8vw, 3.8rem);
   font-weight: 900;
   letter-spacing: -2px;
   margin-bottom: 10px;
-  max-width: 900px;
+  white-space: nowrap; /* Forces text onto one line */
 }
 
 .subtitle {
@@ -90,11 +91,11 @@ h1 {
   line-height: 1.6;
 }
 
-/* The subtle pulsing instruction */
+/* The subtly pulsing instruction */
 .instruction {
   font-size: 0.85rem;
   font-weight: 700;
-  color: #555; /* Subtle grey instead of red */
+  color: #555; 
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-bottom: 50px; 
@@ -254,6 +255,10 @@ h1 {
   .card { height: 280px; }
   .card-front h2 { font-size: 1.4rem; }
   .lang-switch { top: 15px; right: 15px; } 
+  h1 { 
+    white-space: normal; /* Allows wrapping on mobile phones */
+    font-size: 2.2rem;
+  }
 }
 </style>
 </head>
