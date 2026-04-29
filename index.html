@@ -1,10 +1,102 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My First Website</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hire Me | Digital Portfolio</title>
+  <style>
+    /* Imports a modern, clean font from Google */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+    
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #0f172a; /* Sleek dark blue/gray background */
+      color: #f8fafc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    
+    .container {
+      background-color: #1e293b;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      max-width: 600px;
+      width: 85%;
+      text-align: center;
+      border-top: 4px solid #38bdf8; /* Nice blue accent line */
+    }
+    
+    h1 {
+      color: #38bdf8;
+      margin-bottom: 10px;
+      font-size: 2em;
+    }
+    
+    p {
+      line-height: 1.6;
+      color: #cbd5e1;
+      font-size: 1.1em;
+    }
+    
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 25px 0;
+    }
+    
+    .skill-tag {
+      background-color: #334155;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9em;
+      font-weight: 600;
+      transition: background-color 0.2s;
+    }
+
+    .skill-tag:hover {
+      background-color: #475569;
+    }
+    
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 14px 28px;
+      background-color: #38bdf8;
+      color: #0f172a;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 800;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+    
+    .btn:hover {
+      background-color: #7dd3fc;
+      transform: translateY(-3px); /* Makes the button "lift" when hovered */
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello, World!</h1>
-  <p>This is my very first custom-coded website.</p>
+  <div class="container">
+    <h1>Hi, I'm the Candidate You Need.</h1>
+    <p>I built this page from scratch to demonstrate my willingness to learn, adapt, and build things that work. I am a highly motivated professional looking to bring immediate value to your team.</p>
+    
+    <div class="skills">
+      <span class="skill-tag">Problem Solving</span>
+      <span class="skill-tag">Fast Learner</span>
+      <span class="skill-tag">Adaptability</span>
+      <span class="skill-tag">HTML & CSS</span>
+    </div>
+
+    <p>Because this site is public, my full personal details are kept private. You can view my anonymized qualifications below.</p>
+
+    <a href="CV_Anonymous.pdf" target="_blank" class="btn">View My CV</a>
+  </div>
 </body>
 </html>
